@@ -3,14 +3,14 @@ a creative commons mixer as a stateless NodeJS micro service
 
 ![alt tag](https://github.com/rootzoll/ccmixer/blob/master/static/ccmixer-idee.png?raw=true)
 
-##install
+## Setup
 
 ```
 npm install
 npm start
 ```
 
-##ccmixer API v0.1
+## ccmixer API v0.1
 
 Example Call:
 
