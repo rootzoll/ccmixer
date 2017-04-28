@@ -3,12 +3,27 @@ a creative commons mixer as a stateless NodeJS micro service
 
 ![alt tag](https://github.com/rootzoll/ccmixer/blob/master/static/ccmixer-idee.png?raw=true)
 
-## Setup
+## Setup Locally
 
 ```
 npm install
 npm start
 ```
+
+## Run from DockerHub
+
+```
+docker run -d --name ccmixer -p 3003:3003 rootzoll/ccmixer
+```
+
+## Build and Rund Docker Locally
+
+```
+docker build -t="rootzoll/ccmixer" .
+docker run -d --name ccmixer -p 3003:3003 rootzoll/ccmixer
+docker logs ccmixer -f
+```
+
 
 ## ccmixer API v0.1
 
