@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>CC Mixer</title>
-        <meta name="viewport" content="width=800" />
+        <meta name="viewport" content="width=640" />
         <style>
             .output-license {
                 color: grey;
@@ -74,7 +74,11 @@
             </tr>    
         </table>
 
-        <div style="border-width: 1px;border-color: grey;border-style: solid;width: 440px;margin-top: 40px;min-height: 200px;background-color: rgba(255, 255, 0, 0.22);margin-left: auto;margin-right: auto;padding-bottom:24px;">
+        <div style="width: 440px;margin-top: 24px;margin-left: auto;margin-right: auto;font-size:60%; padding:8px; color: red;">
+            This is no legal advice. Its a prototype of a 1day hackathon. We invite everyone to develop this prototype together with us into a service the community can rely on for the future: info@edu-sharing.net
+        </div>
+
+        <div style="border-width: 1px;border-color: grey;border-style: solid;width: 440px;margin-top: 24px;min-height: 200px;background-color: rgba(255, 255, 0, 0.22);margin-left: auto;margin-right: auto;padding-bottom:24px;">
             <h3>ccmixer API v0.1</h3>
             <p style="color:grey;">Example Call:</p>
             <code>http://HOST:PORT/mixer?in=cc-0&in=cc-by-sa</code>
@@ -82,8 +86,8 @@
             <code>{"ts":1493368173881,"input":["cc-0","cc-by-sa"],"output":["cc-by-sa"]}</code>    
         </div>
 
-        <div style="width: 440px;margin-top: 40px;min-height: 200px;margin-left: auto;margin-right: auto;font-size:60%;">
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a> by Christian Rotzoll for edu-sharing OER hackathon 2017 <br/> <a href="https://github.com/edu-sharing/ccmixer">SourceCode on GitHub</a> is MIT License<br/>
+        <div style="width: 440px;margin-top: 24px;min-height: 200px;margin-left: auto;margin-right: auto;font-size:60%;">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a> by Christian Rotzoll for edu-sharing OER hackathon 2017 <br/> <a href="https://github.com/edu-sharing/ccmixer">SourceCode on GitHub</a> is MIT License / <span style=""><a href="http://edu-sharing.com/impressum/">Impressum</a></span><br/>
             <img src="edu-sharing.svg" style="max-width:120px; margin-top:12px;"/>
         </div>
 
@@ -111,7 +115,6 @@
             }
 
             $( "#manual-info" ).hide();
-            $( "#mixer" ).effect( "shake" );
 
             $.get( {url:"./mixer", data: { in : inArray}}, function( data ) {
 
@@ -124,7 +127,10 @@
                     $('#fail-image').hide();
                     $('#fail-image').removeClass("fail");
                     $('#fail-image').fadeIn();
-                };
+                    $( "#mixer" ).effect( "shake" , { direction: 'left', distance: 8});
+                } else {
+                    $( "#mixer" ).effect( "shake" , { direction: 'up', distance: 8}); 
+                }
 
             });
 
