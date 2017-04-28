@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>CC Mixer</title>
+        <meta name="viewport" content="width=800" />
+        <style>
+            .output-license {
+                color: grey;
+                padding: 3px;
+            }
+            .win {
+                color: green;
+            }
+            .fail {
+                display: none;
+            }
+            #blend-button:active {
+                border-width: 0px;
+            }
+            :focus { outline: none; }
+        </style>
+        <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
+    </head>    
+    <body style=" font-family: Helvetica, Arial, Sans-Serif; padding:10px; text-align: center;">
+        <h1>Creative Commons Mixer</h1>
+
+        <table style="margin-left: auto;margin-right: auto;">
+            <tr>
+                <td style="vertical-align: top; text-align: center;min-width: 140px;">
+                    <h3 style="margin-bottom: 5px;">Input</h3>
+                    <div style="max-width:120px;font-size: 50%; color: grey;margin-bottom: 5px;min-height:20px;">List of all used cc liceses in your composed work.</div>
+                        <input type="checkbox" class="in" id="in-cc-0" value="cc-0" /><img src="cc0.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-0')"/><br />
+                        <input type="checkbox" class="in" id="in-cc-by" value="cc-by" /><img src="by.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-by')"/><br />
+                        <input type="checkbox" class="in" id="in-cc-by-sa" value="cc-by-sa" /><img src="by-sa.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-by-sa')"/><br />
+                        <input type="checkbox" class="in" id="in-cc-by-nc" value="cc-by-nc" /><img src="by-nc.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-by-nc')"/><br />
+                        <input type="checkbox" class="in" id="in-cc-by-nd" value="cc-by-nd" /><img src="by-nd.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-by-nd')"/><br />
+                        <input type="checkbox" class="in" id="in-cc-by-nc-sa" value="cc-by-nc-sa" /><img src="by-sa-nc.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-by-nc-sa')"/><br />
+                        <input type="checkbox" class="in" id="in-cc-nc-nd" value="cc-by-nc-nd" /><img src="by-nc-nd.png" style="vertical-align: middle; padding: 3px;" onClick="toggle('in-cc-nc-nd')"/><br />
+                </td>
+                <td style="text-align: center;">
+                    <img id="mixer" src="ccmixer.png" style="max-height:250px;padding:24px;padding-bottom:8px;padding-top:4px;"/><br>
+                    <button id="blend-button" style="
+                    border: 1px solid #a90000;
+                    background: #de2016;
+                    color: white;
+                    font-size: 130%;
+                    padding: 12px;
+                    border-radius: 14px;">
+                    Will it blend?
+                    </button>
+                    
+                </td>
+                <td style="vertical-align: top; text-align: center; min-width: 120px;">
+                    <h3 style="margin-bottom: 5px;">Output</h3>
+                    <div style="max-width:120px;font-size: 50%; color: grey;margin-bottom: 5px;min-height:20px;">List of all allowed cc licenses for the composed work.</div>
+                    <div class="output-license fail" id='cc-0'><img src="cc0.png"/></div>
+                    <div class="output-license fail" id='cc-by'><img src="by.png"/></div>
+                    <div class="output-license fail" id='cc-by-sa'><img src="by-sa.png"/></div>
+                    <div class="output-license fail" id='cc-by-nc'><img src="by-nc.png"/></div>
+                    <div class="output-license fail" id='cc-by-nd'><img src="by-nd.png"/></div>
+                    <div class="output-license fail" id='cc-by-nc-sa'><img src="by-sa-nc.png"/></div>      
+                    <div class="output-license fail" id='cc-by-nc-nd'><img src="by-nc-nd.png"/></div> 
+                    <img id="fail-image" class="fail" src="fail.jpg" style="max-width:100px" />    
+                    <div id="manual-info" style="max-width:120px; color: grey; font-size: 80%; padding-top:14px; line-height:150%;">
+                        <p>Select on the left all the CC licenses you use combined in your work.</p><p>Then hit the "Will it Blend?"-Button and see all the possible licenses you can publish your remix.</p>
+                    </div>      
+                </td>
+            </tr>    
+        </table>
+
+        <div style="border-width: 1px;border-color: grey;border-style: solid;width: 440px;margin-top: 40px;min-height: 200px;background-color: rgba(255, 255, 0, 0.22);margin-left: auto;margin-right: auto;padding-bottom:24px;">
+            <h3>ccmixer API v0.1</h3>
+            <p style="color:grey;">Example Call:</p>
+            <code>http://HOST:PORT/mixer?in=cc-0&in=cc-by-sa</code>
+            <p style="color:grey;">Example Result:</p>
+            <code>{"ts":1493368173881,"input":["cc-0","cc-by-sa"],"output":["cc-by-sa"]}</code>    
+        </div>
+
+        <div style="width: 440px;margin-top: 40px;min-height: 200px;margin-left: auto;margin-right: auto;font-size:60%;">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a> by Christian Rotzoll for edu-sharing OER hackathon 2017 / Code is MIT License<br/>
+            <img src="edu-sharing.svg" style="max-width:120px; margin-top:12px;"/>
+        </div>
+
+    <script>
+
+        var toggle = function(id) {
+            $("#"+id).click(); 
+        };
+
+        $( "#blend-button" ).on( "click", function() {
+
+            $('#fail-image').addClass("fail");
+            $('.output-license').addClass('fail');
+            $('.output-license').removeClass('win');
+
+            var inArray = new Array();
+            $(".in:checked").each(function() {
+		        inArray.push($(this).val());
+	        });
+
+            if (inArray.length==0) {
+                $( "#manual-info" ).show();
+                $( "#manual-info" ).effect( "pulsate",  {times:1}, 1750);
+                return;
+            }
+
+            $( "#manual-info" ).hide();
+            $( "#mixer" ).effect( "shake" );
+
+            $.get( {url:"./mixer", data: { in : inArray}}, function( data ) {
+
+                $.each(data.output, function(i,val) {
+                    $('#'+val).removeClass('fail');
+                    $('#'+val).addClass('win');
+                });
+
+                if (data.output.length==0) {
+                    $('#fail-image').hide();
+                    $('#fail-image').removeClass("fail");
+                    $('#fail-image').fadeIn();
+                };
+
+            });
+
+        });
+    </script>    
+
+    </body>
+</html>
+
+
+
+
+ 

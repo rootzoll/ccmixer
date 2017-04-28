@@ -1,0 +1,28 @@
+{
+  "name": "ccmixer",
+  "version": "0.0.1",
+  "description": "a creative commons mixer as a stateless nodejs mircro service",
+  "main": "service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node service.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rootzoll/ccmixer.git"
+  },
+  "keywords": [
+    "creative",
+    "commons",
+    "remix"
+  ],
+  "author": "Christian Rotzoll",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rootzoll/ccmixer/issues"
+  },
+  "homepage": "https://github.com/rootzoll/ccmixer#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
